@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Goals Page{% endblock %}
+
+{% block content %}
+
+  <!-- <p>Hello, {{ user.username }}!</p> -->
+  <br>
+  <h3>Want to create a new Goal?</h3>
+
+  <form action="goals" method="POST">
+    
+    <div>
+        <label>Enter a new goal:
+            <input type="text" name="goal" size="70" required>
+        </label>
+    </div>
+
+    <div>
+        <label>Enter a priority number for this goal:
+            <input type="number" name="number" required>
+        </label>
+    </div>
+    
+    <input class="myButton" type="submit" value="Add Goal">
+  
+  </form>
+  <br>
+
+
+  <h2>Your Goals:</h2>
+
+  <ul>
+    
+    {% for goal in user.goals %}
+
+      <li>Priority: {{ goal.goal_number }} -- {{ goal.goal_content }} 
+        <a class="delete-button" href="/delete/{{ goal.goal_id }}" 
+        onclick="return confirm('Are you sure you want to delete this goal?')">
+          &nbsp; edit &nbsp;
+        </a>
+
+      </li>
+
+    {% endfor %}
+
+  </ul>
+
+{% endblock %}

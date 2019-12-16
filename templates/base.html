@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <title>Goals</title>
+  <!-- Bootstrap -->
+  <!-- <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cyborg/bootstrap.min.css"
+    rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style type="text/css">
+        body {
+          margin: 5%;
+          background: lavender;
+      }
+  </style>
+
+</head>
+
+<body>
+
+
+  <h3>Goals App</h3>
+  <hr>
+
+
+  {% if "user_id" in session %}
+  <h3>Hi, {{ user.username }}!</h3>
+  Links:
+  <ul>
+      <li><a href="/goals">Goals</a></li>
+      <li><a href="/logout">Logout</a></li>
+  </ul>
+  {% else %}
+  <h3>Hi, unknown user! Please register or login using the links below:</h3>
+
+  Links:
+  <ul>
+      <li><a href="/register">Register</a></li>
+      <li><a href="/">Login</a></li>
+      <li><a href="/goals">Goals</a></li>
+  </ul>
+  {% endif %}
+
+  <!-- Show flashed messages -->
+  {% with messages = get_flashed_messages() %}
+
+  {% for message in messages %}
+
+  <div class="alert alert-warning" style="font-size:150%; color:magenta;">
+    {{ message }}
+</div>
+
+{% endfor %}
+
+{% endwith %}
+<!-- Show flashed messages -->
+
+{% block content %} put your content here {% endblock %}
+
+</body>
+</html>
+
